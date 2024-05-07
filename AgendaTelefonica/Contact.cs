@@ -15,19 +15,21 @@
             this.email = email;
         }
 
-        List<string> GetPhones() { return this.phones; }
+        public List<string> GetPhones() { return this.phones; }
 
-        string GetFullName() { return this.fullName; }  
+        public string GetFullName() { return this.fullName; }  
 
-        Address GetAddress() { return this.address; }
+        public Address GetAddress() { return this.address; }
 
-        string GetEmail() { return this.email; }
+        public string GetEmail() { return this.email; }
 
-        void SetFullName(string fullName) { this.fullName = fullName; }
+        public void SetPhones(List<string> phones) { this.phones = phones; }
 
-        void SetAddress(Address address) { this.address = address; }
+        public void SetFullName(string fullName) { this.fullName = fullName; }
 
-        void SetEmail(string email) { this.email = email; }
+        public void SetAddress(Address address) { this.address = address; }
+
+        public void SetEmail(string email) { this.email = email; }
 
         public int CompareTo(object? obj)
         {

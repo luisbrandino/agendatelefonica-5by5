@@ -1,35 +1,5 @@
 ﻿namespace AgendaTelefonica
 {
-    internal class Minimal<T> where T : IComparable, IFormattable, IConvertible
-    {
-        T value;
-
-        public Minimal(T value)
-        {
-            this.value = value;
-        }
-
-        bool Verify(T value)
-        {
-            return this.value.CompareTo(value) >= 0;
-        }
-    }
-
-    internal class Maximum<T> where T : IComparable, IFormattable, IConvertible
-    {
-        T value;
-
-        public Maximum(T value)
-        {
-            this.value = value;
-        }
-
-        bool Verify(T value)
-        {
-            return this.value.CompareTo(value) <= 0;
-        }
-    }
-
     internal class NumberInput<T> where T : IComparable, IFormattable, IConvertible
     {
         private string _InvalidMessage(T? min, T? max)

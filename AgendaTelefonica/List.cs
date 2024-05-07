@@ -1,10 +1,10 @@
 ﻿namespace AgendaTelefonica
 {
-    internal class List<T> where T : IComparable
+    internal class List<T>
     {
         protected Node<T>? head = null;
         protected Node<T>? rear = null;
-        protected int count = 0;
+        public int Count { get; private set; }
 
         public bool Empty() { return head == null; }
 
@@ -24,7 +24,7 @@
 
         protected void InsertAfter(Node<T> node, Node<T> newNode)
         {
-            count++;
+            Count++;
 
             newNode.SetNext(node.Next());
             node.SetNext(newNode);
@@ -32,7 +32,7 @@
 
         protected void InsertBeforeHead(Node<T> newNode)
         {
-            count++;
+            Count++;
 
             newNode.SetNext(head);
             head = newNode;
@@ -77,7 +77,7 @@
 
         protected void RemoveAfter(Node<T> previous)
         {
-            count--;
+            Count--;
 
             Node<T>? node = previous == null ? head : previous.Next();
 
@@ -88,6 +88,32 @@
                 this.rear = previous;
 
             previous?.SetNext(node.Next());
+        }
+
+        public T? Find(int index)
+        {
+            if (index < 0)
+                return default(T);
+
+            Node<T>? current = this.head;
+            Node<T>? previous = null;
+
+            int currentIndex = 0;
+
+            while (current != null)
+            {
+                if (currentIndex != index)
+                {
+                    currentIndex++;
+                    previous = current;
+                    current = current.Next();
+                    continue;
+                }
+
+                return current.GetData();
+            }
+
+            return default(T);
         }
 
         public void Remove(int index)
@@ -123,7 +149,7 @@
 
             while (current != null)
             {
-                if (current.GetData().CompareTo(item) != 0)
+                if (current.GetData().Equals(item))
                 {
                     previous = current;
                     current = current.Next();
@@ -136,9 +162,20 @@
             }
         }
 
-        public int Count()
+        public T[] ToVector()
         {
-            return count;
+            T[] vector = new T[Count];
+
+            Node<T>? current = this.head;
+            int currentIndex = 0;
+
+            while (current != null)
+            {
+                vector[currentIndex++] = current.GetData();
+                current = current.Next();
+            }
+
+            return vector;
         }
 
         public void Display()

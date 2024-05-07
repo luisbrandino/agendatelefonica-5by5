@@ -1,9 +1,45 @@
 ﻿using AgendaTelefonica;
 
-OrderedList<Contact> contacts = new OrderedList<Contact>();
+ContactManager contacts = new ContactManager();
 
-ConsoleMenu menu = new ConsoleMenu("Adicionar contato", "Remover contato", "Editar contato", "Exibir contato");
+ConsoleMenu createMainMenu()
+{
+    ConsoleMenu menu = new ConsoleMenu("Adicionar contato", "Remover contato", "Editar contato", "Exibir contato");
+    menu.SetActionForOption(1, addContact);
+    menu.SetActionForOption(2, removeContact);
+    menu.SetActionForOption(3, editContact);
+    menu.SetActionForOption(4, displayContact);
+    menu.AddOption("Sair", () => Environment.Exit(0));
 
-NumberInput<float> input = new NumberInput<float>();
+    return menu;
+}
 
-float v = input.Get("Digite uma opção: ", 2, 6);
+void addContact()
+{
+    Console.WriteLine("Adicionar contato");
+    Console.ReadKey();
+}
+
+void removeContact()
+{
+
+}
+
+void editContact()
+{
+
+}
+
+void displayContact()
+{
+
+}
+
+while (true)
+{
+    Console.Clear();
+
+    ConsoleMenu menu = createMainMenu();
+
+    menu.Execute(menu.Ask());
+}
